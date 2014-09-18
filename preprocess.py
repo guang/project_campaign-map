@@ -3,12 +3,25 @@
         @description:   Preprocess raw .csv data into workable form in DataFrame
 """
 import pandas as pd
-from pandas import Series, DataFrame
+import numpy as np
+# from pandas import Series, DataFrame
 
 
-csv_file = 'data/20140711.csv'
-#def extract(csv_file):
-""" Extracts the .csv file into a pandas DataFrame starting on line 7"""
+csv_file = 'data/20140815.csv'
 
-week_data = pd.read_csv(csv_file, skiprows=7)
-assert week_data.columns[0] == 'station' # make sure skipped correct # of rows
+spins_df = pd.read_csv(csv_file)
+
+
+def all_action(df, cols):
+    """ finds all possible action taken by the stations
+    Args
+    df:     the dataframe to look
+    cols:   column names under which to search
+
+    Returns
+    action_list:    an ndarray of all possible actions """
+
+    action_list = []
+    for i in cols:
+        action_list = np.union(df[i].unique(), action_list)
+    return action_list
