@@ -4,7 +4,7 @@
 """
 import pandas as pd
 import numpy as np
-# from pandas import Series, DataFrame
+from pandas import Series, DataFrame # NOQA
 
 
 csv_file = 'data/20140815.csv'
@@ -23,5 +23,23 @@ def all_action(df, cols):
 
     action_list = []
     for i in cols:
-        action_list = np.union(df[i].unique(), action_list)
+        action_list = np.union1d(df[i].unique(), action_list)
     return action_list
+
+
+def rot2spin(rot_df):
+    """ converts rotations (light, medium) to number of spins per week
+    light rotation -> 2 spins
+    medium rotation -> 4 spins
+
+    Args
+    rot_df:     the dataframe with rotations in light/medium
+
+    Returns
+    spin_df:    converted dataframe with spin numbers instead of rotations """
+
+
+if __name__ == '__main__':
+    possible_action = all_action(spins_df,
+                                 ['6/9', '6/16', '6/23', '6/30', '7/7', '7/14',
+                                  '7/21', '7/28', '8/4', '8/11'])
