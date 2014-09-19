@@ -14,11 +14,10 @@ spins_df = pd.read_csv(csv_file)
 
 def all_action(df, cols):
     """ finds all possible action taken by the stations
-    Args
+    -- Args --
     df:     the dataframe to look
     cols:   column names under which to search
-
-    Returns
+    -- Returns --
     action_list:    an ndarray of all possible actions """
 
     action_list = []
@@ -29,14 +28,16 @@ def all_action(df, cols):
 
 def rot2spin(rot_df):
     """ converts rotations (light, medium) to number of spins per week
-    light rotation -> 2 spins
-    medium rotation -> 4 spins
-
-    Args
+    Light -> 2 spins
+    Medium -> 4 spins
+    -- Args --
     rot_df:     the dataframe with rotations in light/medium
-
-    Returns
+    -- Returns --
     spin_df:    converted dataframe with spin numbers instead of rotations """
+
+    spin_df_med = rot_df.replace('Light', 2)
+    spin_df = spin_df_med.replace('Medium', 4)
+    return spin_df
 
 
 if __name__ == '__main__':
