@@ -9,12 +9,12 @@ from pandas.util.testing import assert_frame_equal
 
 
 def test_all_action():
-    test_df = DataFrame([['type 1', 'type 0', 'type 2'],
+    test_df = DataFrame([['type 1', 'type 0', 'hello'],
                          ['type 0', 'type 1', 'type 1']],
-                        columns=['1/1', '1/2', '1/3'])
-    test_cols = ['1/1', '1/2', '1/3']
+                        columns=['1/1', 'hel', '1/3'])
+    test_cols = ['1/1', 'hel', '1/3']
     test_action_list = all_action(test_df, test_cols)
-    assert test_action_list.tolist() == ['type 0', 'type 1', 'type 2']
+    assert set(test_action_list.tolist()) == set(['type 0', 'type 1', 'hello'])
 
 
 def test_rot2spin():

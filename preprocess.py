@@ -22,7 +22,7 @@ def all_action(df, cols):
 
     action_list = []
     for i in cols:
-        action_list = np.union1d(df[i].unique(), action_list)
+        action_list = np.union1d(df[i].unique().tolist(), action_list)
     return action_list
 
 
@@ -40,7 +40,13 @@ def rot2spin(rot_df):
     return spin_df
 
 
+def rm_strings(df):
+    pass
+
+
 if __name__ == '__main__':
+    # clean rotation numbers
+    spins_df = rot2spin(spins_df)
     possible_action = all_action(spins_df,
-                                 ['6/9', '6/16', '6/23', '6/30', '7/7', '7/14',
-                                  '7/21', '7/28', '8/4', '8/11'])
+                                 ['6/9', '6/16', '6/23', '6/30', '7/7',
+                                  '7/14', '7/21', '7/28', '8/4', '8/11'])
